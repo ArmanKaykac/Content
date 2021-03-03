@@ -1,0 +1,91 @@
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<div *ngIf="filtersLoaded | async">
+
+    <div  class=".flex-xl-column" *ngIf="member.role==='ADMIN'" style="margin-top: auto;padding: 100px;">User count connected to the admin: {{member.users.length}}</div>
+    <!--
+    <div class="column"  style="margin: auto;
+       
+        padding: 100px;">
+         <div *ngFor="let post of member.posts"> <span>{{post.title}}</span> </div>
+        <div class="col-sm-10" *ngFor="let post of member.posts" style="margin: auto;
+        width: 50%;
+        border: 3px solid ;
+        padding: 100px;">
+            
+                <div class="box box-widget">
+                    <div class="box-header with-border">
+                        <div class="user-block">
+                            <span class="username"><a>{{member.username}}</a></span> <br>
+                            <span class="description">{{post.title}} </span>
+                        </div>
+                       
+                    </div>
+                  
+                    <div class="box-body">
+                        <img class="img-responsive pad" src={{post.imageUrl}} alt="Photo"> <br>
+                        
+                        
+                        <p>
+                           {{post.description}}
+
+                        </p>
+                        <button class="btn btn-danger">Delete</button>
+                    </div>
+                
+                     
+                </div>
+                
+            
+        </div>
+        <button class="btn btn-danger" style="margin: auto;
+        width: 50%;
+        border: 3px solid ;
+        padding: 10px;">Delete</button>
+
+    </div> -->
+
+    <div class="container">
+
+        <form class="form-signin" [formGroup]="postFormGroup" (ngSubmit)="onSubmit()">
+            <h2 class="form-signin-heading">Add post</h2>
+            <div style="margin-bottom: 25px" class="input-group">
+            <label for="input title" class="sr-only">Title</label>
+            <input formControlName="title" type="title" id="inputTitle" class="form-control" placeholder="Title"
+                required autofocus="">
+            </div>
+            <div style="margin-bottom: 25px" class="input-group">
+            <label for="inputDescription" class="sr-only">Description</label>
+            <input formControlName="description" type="description" id="inputDescription" class="form-control"
+                placeholder="Description" required>
+            </div>
+            <div style="margin-bottom: 25px" class="input-group">
+            <label for="inputImageUrl" class="sr-only">Image Link</label>
+            <input formControlName="imgUrl" type="imageUrl" id="inputImage" class="form-control"
+                placeholder="Image Link" required>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Add</button>
+        </form>
+
+    </div>
+
+
+    <div class="col-sm-8 blog-main" *ngFor="let post of member.posts" style="margin: auto;
+    width: 50%;
+        padding: 80px;">
+        <div class="blog-post">
+            <h2 class="blog-post-title">{{post.title}}</h2>
+            <p class="blog-post-meta">Created by <a href="#">{{member.username}}</a></p> <br><br>
+            <img
+                src="https://lh3.googleusercontent.com/proxy/_e6Y1WRv-0BdZ8jDNdrNwsPTl-DbQ0J08-DdbueFR_19YFunxsBTdQzIahV4x3z1eN1tM51JUXLN9-B-M7VCdTVicIinwCcP4Rih25s1_Q"><br><br>
+
+            <blockquote>
+                <p>{{post.description}}</p>
+            </blockquote>
+        </div>
+        <button class="btn btn-danger" (click)="deleteById(post.id)">Delete</button>
+    </div>
+</div>
