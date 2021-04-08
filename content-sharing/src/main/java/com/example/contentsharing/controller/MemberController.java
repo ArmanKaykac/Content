@@ -2,6 +2,7 @@ package com.example.contentsharing.controller;
 
 
 import com.example.contentsharing.entities.Member;
+import com.example.contentsharing.selenium.SeleniumTest;
 import com.example.contentsharing.service.MemberService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,6 +43,8 @@ public class MemberController {
 
     }
 
+
+
     @GetMapping("/{id}")
     public ResponseEntity<Member> getUserById(@PathVariable int id){
         return new ResponseEntity<>(memberService.findById(id), HttpStatus.OK);
@@ -50,6 +53,11 @@ public class MemberController {
     @DeleteMapping(value =  "/delete/{id}")
     public void deleteMember(@PathVariable int id){
         memberService.deleteById(id);
+    }
+
+
+    public void selenium(){
+
     }
 
 
